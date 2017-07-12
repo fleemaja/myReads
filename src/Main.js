@@ -12,7 +12,7 @@ class Main extends React.Component {
     return (
       <div>
         <AppTitle />
-        <BookShelfs books={this.props.books} shelfNames={this.props.shelfNames}/>
+        <BookShelfs books={this.props.books} updateShelfs={this.props.updateShelfs} shelfNames={this.props.shelfNames}/>
         <OpenSearch />
       </div>
     )

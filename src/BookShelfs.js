@@ -11,7 +11,10 @@ class BookShelfs extends React.Component {
         <div>
           {
             this.props.shelfNames.map(
-              (shelf) => <BookShelf shelfName={shelf} books={this.props.books.filter((b) => b.shelf === shelf )} />
+              (shelf) =>
+              <BookShelf shelfName={shelf} 
+                updateShelfs={this.props.updateShelfs}
+                books={this.props.books.filter((b) => b.shelf === shelf )} />
             )
           }
         </div>

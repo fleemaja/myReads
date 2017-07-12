@@ -8,7 +8,7 @@ class SearchBooksResults extends React.Component {
   render() {
     return (
         <div className="search-books-results">
-          <Books books={this.props.books} />
+          <Books books={this.props.books} updateShelfs={this.props.updateShelfs} />
         </div>
     )
   }

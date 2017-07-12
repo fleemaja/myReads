@@ -4,7 +4,6 @@ import * as BooksAPI from './BooksAPI'
 import './App.css'
 
 class Book extends React.Component {
-
   state = {
     shelf: this.props.book.shelf
   }
@@ -12,7 +11,7 @@ class Book extends React.Component {
   handleShelfChange = (e) => {
     const shelf = e.target.value
     this.setState({ shelf })
-    BooksAPI.update(this.props.book, shelf).then((book) => console.log(JSON.stringify(book)))
+    this.props.updateShelfs(this.props.book, shelf)
   }
 
   render() {

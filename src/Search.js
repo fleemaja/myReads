@@ -19,7 +19,7 @@ class Search extends React.Component {
     return (
       <div className="search-books">
         <SearchBooksBar searchBooks={this.searchBooks} />
-        <SearchBooksResults books={this.state.books} />
+        <SearchBooksResults books={this.state.books} updateShelfs={this.props.updateShelfs} />
       </div>
     )
   }
