@@ -1,24 +1,25 @@
 import React from 'react'
+import SearchBooksBar from './SearchBooksBar'
+import SearchBooksResults from './SearchBooksResults'
 import { Link } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
 
 class Search extends React.Component {
+  state = {
+    books: []
+  }
+
+  searchBooks = (query) => {
+    const maxResults = 20
+    BooksAPI.search(query, maxResults).then((books) => this.setState({books}))
+  }
+
   render() {
     return (
-      <div>
-        <div className="search-books">
-          <div className="search-books-bar">
-            <a className="close-search" onClick={() => this.setState({ showSearchPage: false })}>Close</a>
-            <div className="search-books-input-wrapper">
-              <input type="text" placeholder="Search by title or author"/>
-            </div>
-          </div>
-          <div className="search-books-results">
-            <ol className="books-grid"></ol>
-          </div>
-        </div>
-        <Link to="/">Link to Main</Link>
+      <div className="search-books">
+        <SearchBooksBar searchBooks={this.searchBooks} />
+        <SearchBooksResults books={this.state.books} />
       </div>
     )
   }
