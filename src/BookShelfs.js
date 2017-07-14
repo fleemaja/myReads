@@ -1,7 +1,5 @@
 import React from 'react'
 import BookShelf from './BookShelf'
-import { Link } from 'react-router-dom'
-import * as BooksAPI from './BooksAPI'
 import './App.css'
 
 class BookShelfs extends React.Component {
@@ -11,8 +9,8 @@ class BookShelfs extends React.Component {
         <div>
           {
             this.props.shelfNames.map(
-              (shelf) =>
-              <BookShelf shelfName={shelf} 
+              (shelf, i) =>
+              <BookShelf shelfName={shelf} key={i}
                 updateShelfs={this.props.updateShelfs}
                 books={this.props.books.filter((b) => b.shelf === shelf )} />
             )
