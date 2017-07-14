@@ -11,12 +11,18 @@ class BooksApp extends React.Component {
     shelfNames: ['currentlyReading', 'wantToRead', 'read']
   }
 
-  componentWillMount = () => {
+  loadData() {
     BooksAPI.getAll().then((books) => this.setState({ books }))
   }
 
+  componentWillMount = () => {
+    this.loadData()
+  }
+
   updateShelfs = (book, shelf) => {
-    BooksAPI.update(book, shelf).then(BooksAPI.getAll().then((books) => this.setState({ books })))
+    BooksAPI.update(book, shelf).then(() => {
+      this.loadData()
+    })
   }
 
   render() {

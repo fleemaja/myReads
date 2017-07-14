@@ -1,9 +1,21 @@
 import React from 'react'
+import * as BooksAPI from './BooksAPI'
 import './App.css'
 
 class Book extends React.Component {
   state = {
-    shelf: this.props.book.shelf
+    shelf: ''
+  }
+
+  componentWillMount() {
+    // use db api to find search result book's shelf
+    BooksAPI.getAll().then((books) => {
+      books.forEach((b) => {
+        if (b.id == this.props.book.id) {
+          this.setState({shelf: b.shelf})
+        }
+      })
+    })
   }
 
   handleShelfChange = (e) => {
@@ -19,7 +31,7 @@ class Book extends React.Component {
           <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${this.props.book.imageLinks.thumbnail})` }}></div>
           <div className="book-shelf-changer">
             <select value={this.state.shelf} onChange={this.handleShelfChange}>
-              <option value="none" disabled>Move to...</option>
+              <option value='' disabled>Move to...</option>
               <option value="currentlyReading">Currently Reading</option>
               <option value="wantToRead">Want to Read</option>
               <option value="read">Read</option>
