@@ -1,8 +1,10 @@
-#MyReads
+# MyReads
 run ```npm install``` to install dependencies then run ```npm start``` to launch the myReads react app
 
+
+This app was forked from Udacity's provided starter code. Information for this starter code is provided below:
 ***
-This app was forked from Udacity's provided starter code. Instructions and information for this starter code are provided below:
+***
 ***
 
 This is the starter template for the final assessment project for Udacity's React Fundamentals course, developed by [React Training](https://reacttraining.com). The goal of this template is to save you time by providing a static example of the CSS and HTML markup that may be used, but without any of the React code that is needed to complete the project. If you choose to start with this template, your job will be to add interactivity to the app by refactoring the static code in this template.

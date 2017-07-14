@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import './App.css'
 
 class SearchBooksBar extends React.Component {
-
   state = {
     query: ''
   }

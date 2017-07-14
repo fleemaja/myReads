@@ -8,7 +8,7 @@ class Book extends React.Component {
   }
 
   componentWillMount() {
-    // use db api to find search result book's shelf
+    // use persisted db api to find search result book's shelf
     BooksAPI.getAll().then((books) => {
       books.forEach((b) => {
         if (b.id == this.props.book.id) {
