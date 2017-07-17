@@ -2,13 +2,16 @@ import React from 'react'
 import Books from './Books'
 import './App.css'
 
-const BookShelf = (props) => (
+const BookShelf = ({ shelf, books, getBookshelf, updateShelfs }) => (
   <div className="bookshelf">
     <h2 className="bookshelf-title">
-      {props.shelf.pretty}
+      {shelf.displayName}
     </h2>
     <div className="bookshelf-books">
-      <Books updateShelfs={props.updateShelfs} books={props.books} />
+      <Books books={books}
+             updateShelfs={updateShelfs}
+             getBookshelf={getBookshelf}
+              />
     </div>
   </div>
 )

@@ -4,12 +4,12 @@ import BookShelfs from './BookShelfs'
 import OpenSearch from './OpenSearch'
 import './App.css'
 
-const Main = (props) => (
+const Main = ({ books, updateShelfs, getBookshelf }) => (
   <div>
     <AppTitle />
-    <BookShelfs books={props.books}
-                updateShelfs={props.updateShelfs}
-                shelfNames={props.shelfNames} />
+    <BookShelfs books={books}
+                updateShelfs={updateShelfs}
+                getBookshelf={getBookshelf} />
     <OpenSearch />
   </div>
 )

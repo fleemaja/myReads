@@ -2,12 +2,17 @@ import React from 'react'
 import Book from './Book'
 import './App.css'
 
-const Books = (props) => (
+const Books = ({books, updateShelfs, getBookshelf}) => (
   <ol className="books-grid">
     {
-      props.books.map((b, i) => <li key={i}>
-        {<Book updateShelfs={props.updateShelfs} book={b}/>}
-      </li>)
+      books.map((book, i) =>
+        <li key={i}>
+          {
+            <Book book={book}
+                 updateShelfs={updateShelfs}
+                 getBookshelf={getBookshelf} />
+          }
+        </li>)
     }
   </ol>
 )

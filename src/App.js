@@ -5,14 +5,9 @@ import Main from './Main'
 import Search from './Search'
 import './App.css'
 
-class BooksApp extends React.Component {
+class App extends React.Component {
   state = {
-    books: [],
-    shelfNames: [
-      {ugly: 'currentlyReading', pretty: 'Currently Reading'},
-      {ugly: 'wantToRead', pretty: 'Want To Read'},
-      {ugly: 'read', pretty: 'Read'}
-    ]
+    books: []
   }
 
   loadData() {
@@ -21,6 +16,18 @@ class BooksApp extends React.Component {
 
   componentWillMount = () => {
     this.loadData()
+  }
+
+  async getBookshelf(bookId) {
+    // use persisted db api to find search result book's shelf
+    let shelf = 'none'
+    const books = await BooksAPI.getAll()
+    books.forEach((b) => {
+      if (b.id === bookId) {
+        shelf = b.shelf
+      }
+    })
+    return shelf
   }
 
   updateShelfs = (book, shelf) => {
@@ -36,12 +43,13 @@ class BooksApp extends React.Component {
         <Route exact path="/" render={() => (
           <Main books={this.state.books}
                 updateShelfs={this.updateShelfs}
-                shelfNames={this.state.shelfNames} />
+                getBookshelf={this.getBookshelf} />
           )}
         />
 
         <Route path="/search" render={() => (
-          <Search updateShelfs={this.updateShelfs} />
+          <Search updateShelfs={this.updateShelfs}
+                  getBookshelf={this.getBookshelf} />
           )}
         />
       </div>
@@ -49,4 +57,4 @@ class BooksApp extends React.Component {
   }
 }
 
-export default BooksApp
+export default App

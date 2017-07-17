@@ -1,16 +1,21 @@
 import React from 'react'
 import BookShelf from './BookShelf'
+import * as ShelfNames from './ShelfNames'
 import './App.css'
 
-const BookShelfs = (props) => (
+const BookShelfs = ({ books, updateShelfs, getBookshelf }) => (
   <div className="list-books-content">
     <div>
       {
-        props.shelfNames.map(
+        ShelfNames.names.map(
           (shelf, i) =>
-          <BookShelf shelf={shelf} key={i}
-            updateShelfs={props.updateShelfs}
-            books={props.books.filter((b) => b.shelf === shelf.ugly )} />
+          <BookShelf
+            shelf={shelf}
+            books={books.filter((b) => b.shelf === shelf.apiName )}
+            key={i}
+            updateShelfs={updateShelfs}
+            getBookshelf={getBookshelf}
+          />
         )
       }
     </div>

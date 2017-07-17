@@ -1,5 +1,4 @@
 import React from 'react'
-import * as BooksAPI from './BooksAPI'
 import './App.css'
 
 class Book extends React.Component {
@@ -7,15 +6,9 @@ class Book extends React.Component {
     shelf: ''
   }
 
-  componentWillMount() {
-    // use persisted db api to find search result book's shelf
-    BooksAPI.getAll().then((books) => {
-      books.forEach((b) => {
-        if (b.id == this.props.book.id) {
-          this.setState({shelf: b.shelf})
-        }
-      })
-    })
+  async componentWillMount() {
+    const shelf = await this.props.getBookshelf(this.props.book.id)
+    this.setState({shelf})
   }
 
   handleShelfChange = (e) => {
@@ -40,7 +33,9 @@ class Book extends React.Component {
           </div>
         </div>
         <div className="book-title">{this.props.book.title}</div>
-        <div className="book-authors">{this.props.book.authors.join(", ")}</div>
+        <div className="book-authors">
+          {this.props.book.authors && this.props.book.authors.join(", ")}
+        </div>
       </div>
     )
   }

@@ -11,14 +11,18 @@ class Search extends React.Component {
 
   searchBooks = (query) => {
     const maxResults = 20
-    BooksAPI.search(query, maxResults).then((books) => this.setState({books}))
+    if (query) {
+      BooksAPI.search(query, maxResults).then((books) => this.setState({books}))
+    }
   }
 
   render() {
     return (
       <div className="search-books">
         <SearchBooksBar searchBooks={this.searchBooks} />
-        <SearchBooksResults books={this.state.books} updateShelfs={this.props.updateShelfs} />
+        <SearchBooksResults books={this.state.books}
+                            updateShelfs={this.props.updateShelfs}
+                            getBookshelf={this.props.getBookshelf} />
       </div>
     )
   }

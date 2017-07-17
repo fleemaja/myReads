@@ -2,10 +2,11 @@ import React from 'react'
 import Books from './Books.js'
 import './App.css'
 
-const SearchBooksResults = (props) => (
+const SearchBooksResults = ({ books, updateShelfs, getBookshelf }) => (
   <div className="search-books-results">
-    <Books books={props.books}
-           updateShelfs={props.updateShelfs} />
+    <Books books={books}
+           updateShelfs={updateShelfs}
+           getBookshelf={getBookshelf} />
   </div>
 )
 
